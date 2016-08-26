@@ -1,0 +1,11 @@
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule .* index.php/$0 [PT,L]
+SetEnvIfNoCase User-Agent "^Wget" bad_bot
+
+<Limit GET POST>
+   Order Allow,Deny
+   Allow from all
+   Deny from env=bad_bot
+</Limit>
